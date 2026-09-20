@@ -1,0 +1,324 @@
+<title>Allen Keymap Reference</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --paper:#faf8f3; --ink:#20221f; --ink-soft:#4a4d47; --rule:#d9d4c6;
+    --accent:#3a6b5c; --accent-soft:#e3ece7;
+    --key-face:#fffdf8; --key-face-dim:#f1efe7;
+    --key-border:#c9c2ae; --key-border-dim:#dcd7c9;
+    --mono:"JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+    --sans:"Libre Franklin", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#191a17; --ink:#ece8dd; --ink-soft:#a6a294; --rule:#3a392f;
+      --accent:#6fae98; --accent-soft:#233129;
+      --key-face:#232420; --key-face-dim:#1c1d1a;
+      --key-border:#454336; --key-border-dim:#2c2b25;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#191a17; --ink:#ece8dd; --ink-soft:#a6a294; --rule:#3a392f;
+    --accent:#6fae98; --accent-soft:#233129;
+    --key-face:#232420; --key-face-dim:#1c1d1a;
+    --key-border:#454336; --key-border-dim:#2c2b25;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans);
+    margin:0; padding:3rem 1.5rem 5rem; display:flex; justify-content:center;}
+  main{width:100%; max-width:840px;}
+  header{margin-bottom:2.75rem;}
+  .eyebrow{font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 0.6rem;}
+  h1{font-size:2.15rem; font-weight:800; letter-spacing:-0.01em; margin:0 0 0.5rem; text-wrap:balance;}
+  h1 code{font-family:var(--mono); font-weight:600; background:var(--accent-soft);
+    color:var(--accent); padding:0.08em 0.4em; border-radius:4px; font-size:0.82em;}
+  .dek{font-size:1.02rem; color:var(--ink-soft); max-width:60ch; line-height:1.55; margin:0;}
+  h2{font-size:1.2rem; font-weight:700; margin:0 0 0.3rem; letter-spacing:-0.005em;}
+  .section{margin-top:3rem;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; gap:1rem;
+    border-bottom:1.5px solid var(--rule); padding-bottom:0.6rem; margin-bottom:1.1rem;}
+  .section-note{font-family:var(--mono); font-size:0.75rem; color:var(--ink-soft); white-space:nowrap;}
+  .activation{width:100%; border-collapse:collapse; font-size:0.92rem;}
+  .activation th{text-align:left; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:500; padding:0 0 0.5rem;
+    border-bottom:1px solid var(--rule);}
+  .activation td{padding:0.6rem 0.8rem 0.6rem 0; border-bottom:1px solid var(--rule); vertical-align:top;}
+  .activation td:first-child{width:9rem;}
+  .activation code{font-family:var(--mono); font-weight:600; color:var(--accent);}
+  .board{background:var(--key-face-dim); border:1px solid var(--rule); border-radius:10px; padding:1rem;}
+  .row{display:flex; gap:0.28rem; margin-bottom:0.28rem;}
+  .row:last-child{margin-bottom:0;}
+  .key{flex:var(--w,1) 0 0; min-width:0; position:relative; background:var(--key-face); border:1px solid var(--key-border);
+    border-radius:5px; min-height:2.5rem; display:flex; align-items:center; justify-content:center;
+    text-align:center; overflow-wrap:anywhere; font-family:var(--mono); font-size:0.66rem; font-weight:500; line-height:1.2;
+    padding:0.15rem 0.2rem; color:var(--ink); letter-spacing:-0.01em; text-decoration:none;}
+  a.key{cursor:pointer;}
+  a.key:hover{border-color:var(--accent); box-shadow:0 0 0 1px var(--accent);}
+  a.key[data-tip]:hover::after{content:attr(data-tip); position:absolute; bottom:calc(100% + 0.4rem);
+    left:50%; transform:translateX(-50%); background:var(--ink); color:var(--paper); font-family:var(--sans);
+    font-size:0.74rem; font-weight:500; letter-spacing:0; white-space:nowrap; padding:0.3rem 0.6rem;
+    border-radius:5px; box-shadow:0 4px 14px rgba(0,0,0,0.25); pointer-events:none; z-index:20;}
+  a.key[data-tip]:hover::before{content:""; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    border:5px solid transparent; border-top-color:var(--ink); margin-bottom:-0.1rem; pointer-events:none; z-index:20;}
+  .key.spacer{background:transparent; border:none;}
+  .key--dim{background:var(--key-face-dim); border-color:var(--key-border-dim); color:var(--ink-soft); opacity:0.55;}
+  .key--active{background:var(--accent-soft); border-color:var(--accent); color:var(--accent); font-weight:700;}
+  .encoder-note{font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); margin:0.9rem 0 0;}
+  .encoder-note strong{color:var(--ink); font-weight:600;}
+  footer{margin-top:3.5rem; padding-top:1.2rem; border-top:1px solid var(--rule); font-family:var(--mono);
+    font-size:0.72rem; color:var(--ink-soft); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;}
+  @media print{
+    body{padding:0; background:#fff; color:#000;}
+    :root{--paper:#fff; --ink:#000; --ink-soft:#333; --rule:#bbb; --accent:#2c5245; --accent-soft:#eef3f0;
+      --key-face:#fff; --key-face-dim:#f6f6f2; --key-border:#999; --key-border-dim:#ccc;}
+    .board{break-inside:avoid;}
+    .section{break-inside:avoid-page;}
+    a{color:inherit; text-decoration:none;}
+  }
+  @media (max-width:560px){ .key{font-size:0.56rem;} h1{font-size:1.6rem;} }
+</style>
+
+<main>
+  <section class="section" style="margin-top:0;">
+    <div class="section-head">
+      <h2>WIN_BASE <span style="font-weight:400;color:var(--ink-soft);">&mdash; default</span></h2>
+      <span class="section-note">standard QWERTY</span>
+    </div>
+    <div class="board" aria-label="WIN_BASE key layout">
+      <div class="row">
+        <a class="key" style="--w:1" title="Esc" data-tip="Esc" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Esc</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key" style="--w:1" title="F1" data-tip="F1" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F1</a>
+        <a class="key" style="--w:1" title="F2" data-tip="F2" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F2</a>
+        <a class="key" style="--w:1" title="F3" data-tip="F3" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F3</a>
+        <a class="key" style="--w:1" title="F4" data-tip="F4" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F4</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key" style="--w:1" title="F5" data-tip="F5" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F5</a>
+        <a class="key" style="--w:1" title="F6" data-tip="F6" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F6</a>
+        <a class="key" style="--w:1" title="F7" data-tip="F7" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F7</a>
+        <a class="key" style="--w:1" title="F8" data-tip="F8" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F8</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key" style="--w:1" title="F9" data-tip="F9" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F9</a>
+        <a class="key" style="--w:1" title="F10" data-tip="F10" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F10</a>
+        <a class="key" style="--w:1" title="F11" data-tip="F11" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F11</a>
+        <a class="key" style="--w:1" title="F12" data-tip="F12" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F12</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key" style="--w:1" title="Mute" data-tip="Mute" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Mute</a>
+        <a class="key" style="--w:1" title="Print Screen" data-tip="Print Screen" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">PrtScr</a>
+        <div class="key" style="--w:1">-</div>
+        <a class="key" style="--w:1" title="RGB Matrix Mode Next" data-tip="RGB Matrix Mode Next" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBNxt</a>
+      </div>
+      <div class="row">
+        <a class="key" style="--w:1" title="`" data-tip="`" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">`</a>
+        <a class="key" style="--w:1" title="1" data-tip="1" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">1</a>
+        <a class="key" style="--w:1" title="2" data-tip="2" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">2</a>
+        <a class="key" style="--w:1" title="3" data-tip="3" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">3</a>
+        <a class="key" style="--w:1" title="4" data-tip="4" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">4</a>
+        <a class="key" style="--w:1" title="5" data-tip="5" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">5</a>
+        <a class="key" style="--w:1" title="6" data-tip="6" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">6</a>
+        <a class="key" style="--w:1" title="7" data-tip="7" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">7</a>
+        <a class="key" style="--w:1" title="8" data-tip="8" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">8</a>
+        <a class="key" style="--w:1" title="9" data-tip="9" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">9</a>
+        <a class="key" style="--w:1" title="0" data-tip="0" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">0</a>
+        <a class="key" style="--w:1" title="-" data-tip="-" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">-</a>
+        <a class="key" style="--w:1" title="=" data-tip="=" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">=</a>
+        <a class="key" style="--w:2" title="Backspace" data-tip="Backspace" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Bksp</a>
+        <a class="key" style="--w:1" title="Insert" data-tip="Insert" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Ins</a>
+        <a class="key" style="--w:1" title="Home" data-tip="Home" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Home</a>
+        <a class="key" style="--w:1" title="Page Up" data-tip="Page Up" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Page+</a>
+      </div>
+      <div class="row">
+        <a class="key" style="--w:1.5" title="Tab" data-tip="Tab" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Tab</a>
+        <a class="key" style="--w:1" title="Q" data-tip="Q" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Q</a>
+        <a class="key" style="--w:1" title="W" data-tip="W" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">W</a>
+        <a class="key" style="--w:1" title="E" data-tip="E" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">E</a>
+        <a class="key" style="--w:1" title="R" data-tip="R" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">R</a>
+        <a class="key" style="--w:1" title="T" data-tip="T" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">T</a>
+        <a class="key" style="--w:1" title="Y" data-tip="Y" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Y</a>
+        <a class="key" style="--w:1" title="U" data-tip="U" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">U</a>
+        <a class="key" style="--w:1" title="I" data-tip="I" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">I</a>
+        <a class="key" style="--w:1" title="O" data-tip="O" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">O</a>
+        <a class="key" style="--w:1" title="P" data-tip="P" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">P</a>
+        <a class="key" style="--w:1" title="[" data-tip="[" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">[</a>
+        <a class="key" style="--w:1" title="]" data-tip="]" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">]</a>
+        <a class="key" style="--w:1.5" title="\" data-tip="\" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">\</a>
+        <a class="key" style="--w:1" title="Delete" data-tip="Delete" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Del</a>
+        <a class="key" style="--w:1" title="End" data-tip="End" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">End</a>
+        <a class="key" style="--w:1" title="Page Down" data-tip="Page Down" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Page-</a>
+      </div>
+      <div class="row">
+        <a class="key" style="--w:1.75" title="Caps Lock" data-tip="Caps Lock" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Caps</a>
+        <a class="key" style="--w:1" title="A" data-tip="A" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">A</a>
+        <a class="key" style="--w:1" title="S" data-tip="S" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">S</a>
+        <a class="key" style="--w:1" title="D" data-tip="D" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">D</a>
+        <a class="key" style="--w:1" title="F" data-tip="F" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F</a>
+        <a class="key" style="--w:1" title="G" data-tip="G" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">G</a>
+        <a class="key" style="--w:1" title="H" data-tip="H" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">H</a>
+        <a class="key" style="--w:1" title="J" data-tip="J" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">J</a>
+        <a class="key" style="--w:1" title="K" data-tip="K" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">K</a>
+        <a class="key" style="--w:1" title="L" data-tip="L" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">L</a>
+        <a class="key" style="--w:1" title=";" data-tip=";" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">;</a>
+        <a class="key" style="--w:1" title="&#x27;" data-tip="&#x27;" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">'</a>
+        <a class="key" style="--w:2.25" title="Enter" data-tip="Enter" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Enter</a>
+        <div class="key spacer" style="--w:3.5"></div>
+      </div>
+      <div class="row">
+        <a class="key" style="--w:2.25" title="Left Shift" data-tip="Left Shift" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Shift</a>
+        <a class="key" style="--w:1" title="Z" data-tip="Z" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Z</a>
+        <a class="key" style="--w:1" title="X" data-tip="X" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">X</a>
+        <a class="key" style="--w:1" title="C" data-tip="C" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">C</a>
+        <a class="key" style="--w:1" title="V" data-tip="V" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">V</a>
+        <a class="key" style="--w:1" title="B" data-tip="B" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">B</a>
+        <a class="key" style="--w:1" title="N" data-tip="N" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">N</a>
+        <a class="key" style="--w:1" title="M" data-tip="M" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">M</a>
+        <a class="key" style="--w:1" title="," data-tip="," href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">,</a>
+        <a class="key" style="--w:1" title="." data-tip="." href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">.</a>
+        <a class="key" style="--w:1" title="/" data-tip="/" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">/</a>
+        <a class="key" style="--w:1.75" title="Right Shift" data-tip="Right Shift" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Shift</a>
+        <div class="key spacer" style="--w:1.5"></div>
+        <a class="key" style="--w:1" title="Up" data-tip="Up" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Up</a>
+        <div class="key spacer" style="--w:1.5"></div>
+      </div>
+      <div class="row">
+        <a class="key" style="--w:1.25" title="Left Control" data-tip="Left Control" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Ctrl</a>
+        <a class="key" style="--w:1.25" title="Left GUI" data-tip="Left GUI" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Win</a>
+        <a class="key" style="--w:1.25" title="Left Alt" data-tip="Left Alt" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Alt</a>
+        <a class="key" style="--w:6.25" title="Spacebar" data-tip="Spacebar" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Space</a>
+        <a class="key" style="--w:1.25" title="Right Alt" data-tip="Right Alt" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Alt</a>
+        <a class="key" style="--w:1.25" title="Right GUI" data-tip="Right GUI" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Win</a>
+        <a class="key" style="--w:1.25" title="Momentary layer switch to WIN_FN" data-tip="Momentary layer switch to WIN_FN" href="https://docs.qmk.fm/feature_layers" target="_blank" rel="noopener">Fn</a>
+        <a class="key" style="--w:1.25" title="Right Control" data-tip="Right Control" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Ctrl</a>
+        <div class="key spacer" style="--w:0.35"></div>
+        <a class="key" style="--w:1" title="Left" data-tip="Left" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Left</a>
+        <a class="key" style="--w:1" title="Down" data-tip="Down" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Down</a>
+        <a class="key" style="--w:1" title="Right" data-tip="Right" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Right</a>
+      </div>
+    </div>
+    <p class="encoder-note">Rotary encoder: <strong>Volume Down</strong> / <strong>Volume Up</strong></p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>WIN_FN <span style="font-weight:400;color:var(--ink-soft);">&mdash; Fn held</span></h2>
+      <span class="section-note">dim = transparent, falls through to base</span>
+    </div>
+    <div class="board" aria-label="WIN_FN key layout">
+      <div class="row">
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key key--active" style="--w:1" title="Brightness Down" data-tip="Brightness Down" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Brt-</a>
+        <a class="key key--active" style="--w:1" title="Brightness Up" data-tip="Brightness Up" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Brt+</a>
+        <a class="key key--active" style="--w:1" title="Sends Ctrl+Alt+M" data-tip="Sends Ctrl+Alt+M" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Ctrl+Alt+M</a>
+        <a class="key key--active" style="--w:1" title="Sends Ctrl+F9" data-tip="Sends Ctrl+F9" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Ctrl+F9</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Value Down" data-tip="RGB Matrix Value Down" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBVal-</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Value Up" data-tip="RGB Matrix Value Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBVal+</a>
+        <a class="key key--active" style="--w:1" title="Previous" data-tip="Previous" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Prev</a>
+        <a class="key key--active" style="--w:1" title="Play/Pause Track" data-tip="Play/Pause Track" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">PlayPause</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key key--active" style="--w:1" title="Next" data-tip="Next" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Nxt</a>
+        <a class="key key--active" style="--w:1" title="Mute" data-tip="Mute" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Mute</a>
+        <a class="key key--active" style="--w:1" title="Volume Down" data-tip="Volume Down" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Vol-</a>
+        <a class="key key--active" style="--w:1" title="Volume Up" data-tip="Volume Up" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Vol+</a>
+        <div class="key spacer" style="--w:0.4"></div>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Toggle" data-tip="RGB Matrix Toggle" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBTog</a>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Start 1" data-tip="Dynamic Macro Record Start 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRec1</a>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Stop" data-tip="Dynamic Macro Record Stop" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRecStop</a>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Play 1" data-tip="Dynamic Macro Play 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroPlay1</a>
+      </div>
+      <div class="row">
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:2" title="Backspace" data-tip="Backspace" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Bksp</a>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Mouse wheel up" data-tip="Mouse wheel up" href="https://docs.qmk.fm/features/mouse_keys" target="_blank" rel="noopener">Whl+</a>
+      </div>
+      <div class="row">
+        <a class="key key--active" style="--w:1.5" title="RGB Matrix Toggle" data-tip="RGB Matrix Toggle" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBTog</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Mode Next" data-tip="RGB Matrix Mode Next" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBNxt</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Value Up" data-tip="RGB Matrix Value Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBVal+</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Hue Up" data-tip="RGB Matrix Hue Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBHue+</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Saturation Up" data-tip="RGB Matrix Saturation Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBSat+</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Speed Up" data-tip="RGB Matrix Speed Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBSpd+</a>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1.5">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Mouse wheel down" data-tip="Mouse wheel down" href="https://docs.qmk.fm/features/mouse_keys" target="_blank" rel="noopener">Whl-</a>
+      </div>
+      <div class="row">
+        <div class="key key--dim" style="--w:1.75">_</div>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Mode Previous" data-tip="RGB Matrix Mode Previous" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBPrev</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Value Down" data-tip="RGB Matrix Value Down" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBVal-</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Hue Down" data-tip="RGB Matrix Hue Down" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBHue-</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Saturation Down" data-tip="RGB Matrix Saturation Down" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBSat-</a>
+        <a class="key key--active" style="--w:1" title="RGB Matrix Speed Down" data-tip="RGB Matrix Speed Down" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBSpd-</a>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:2.25" title="Enter" data-tip="Enter" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Enter</a>
+        <div class="key spacer" style="--w:3.5"></div>
+      </div>
+      <div class="row">
+        <div class="key key--dim" style="--w:2.25">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Caps Word Toggle" data-tip="Caps Word Toggle" href="https://docs.qmk.fm/features/caps_word" target="_blank" rel="noopener">CapsWordTog</a>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1.75">_</div>
+        <div class="key spacer" style="--w:1.5"></div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key spacer" style="--w:1.5"></div>
+      </div>
+      <div class="row">
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key key--dim" style="--w:6.25">_</div>
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key key--dim" style="--w:1.25">_</div>
+        <div class="key spacer" style="--w:0.35"></div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+      </div>
+    </div>
+    <p class="encoder-note">Rotary encoder (Fn held): keyboard <strong>RGB brightness down</strong> / <strong>up</strong></p>
+    <p class="encoder-note">Hover a key for what it does &middot; click a key to open its QMK docs page</p>
+  </section>
+
+  <footer>
+    <span>Keychron Q3 &middot; ANSI &middot; Encoder &mdash; keymap <code>allen</code></span>
+    <span>MAC_BASE / MAC_FN unused, unreachable</span>
+  </footer>
+</main>
