@@ -104,10 +104,10 @@
         <a class="key" style="--w:1" title="F11" data-tip="F11" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F11</a>
         <a class="key" style="--w:1" title="F12" data-tip="F12" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F12</a>
         <div class="key spacer" style="--w:0.4"></div>
-        <a class="key" style="--w:1" title="Mute" data-tip="Mute" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Mute</a>
+        <a class="key" style="--w:1" title="Play/Pause Track" data-tip="Play/Pause Track" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">PlayPause</a>
         <a class="key" style="--w:1" title="Print Screen" data-tip="Print Screen" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">PrtScr</a>
-        <div class="key" style="--w:1">-</div>
-        <a class="key" style="--w:1" title="RGB Matrix Mode Next" data-tip="RGB Matrix Mode Next" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBNxt</a>
+        <a class="key" style="--w:1" title="Mute" data-tip="Mute" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Mute</a>
+        <a class="key" style="--w:1" title="F" data-tip="F" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">F</a>
       </div>
       <div class="row">
         <a class="key" style="--w:1" title="`" data-tip="`" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">`</a>
@@ -148,7 +148,7 @@
         <a class="key" style="--w:1" title="Page Down" data-tip="Page Down" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Page-</a>
       </div>
       <div class="row">
-        <a class="key" style="--w:1.75" title="Caps Lock" data-tip="Caps Lock" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Caps</a>
+        <a class="key" style="--w:1.75" title="Tap: Caps Lock. Hold: momentary layer switch to WIN_FN" data-tip="Tap: Caps Lock. Hold: momentary layer switch to WIN_FN" href="https://docs.qmk.fm/feature_layers" target="_blank" rel="noopener">Caps/Fn</a>
         <a class="key" style="--w:1" title="A" data-tip="A" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">A</a>
         <a class="key" style="--w:1" title="S" data-tip="S" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">S</a>
         <a class="key" style="--w:1" title="D" data-tip="D" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">D</a>
@@ -205,7 +205,7 @@
     </div>
     <div class="board" aria-label="WIN_FN key layout">
       <div class="row">
-        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Bootloader" data-tip="Bootloader" href="https://docs.qmk.fm/quantum_keycodes" target="_blank" rel="noopener">Boot</a>
         <div class="key spacer" style="--w:0.4"></div>
         <a class="key key--active" style="--w:1" title="Brightness Down" data-tip="Brightness Down" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Brt-</a>
         <a class="key key--active" style="--w:1" title="Brightness Up" data-tip="Brightness Up" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Brt+</a>
@@ -223,9 +223,9 @@
         <a class="key key--active" style="--w:1" title="Volume Up" data-tip="Volume Up" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Vol+</a>
         <div class="key spacer" style="--w:0.4"></div>
         <a class="key key--active" style="--w:1" title="RGB Matrix Toggle" data-tip="RGB Matrix Toggle" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBTog</a>
-        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Start 1" data-tip="Dynamic Macro Record Start 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRec1</a>
-        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Stop" data-tip="Dynamic Macro Record Stop" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRecStop</a>
-        <a class="key key--active" style="--w:1" title="Dynamic Macro Play 1" data-tip="Dynamic Macro Play 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroPlay1</a>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
+        <div class="key key--dim" style="--w:1">_</div>
       </div>
       <div class="row">
         <div class="key key--dim" style="--w:1">_</div>
@@ -242,8 +242,8 @@
         <div class="key key--dim" style="--w:1">_</div>
         <div class="key key--dim" style="--w:1">_</div>
         <a class="key key--active" style="--w:2" title="Backspace" data-tip="Backspace" href="https://docs.qmk.fm/keycodes_basic" target="_blank" rel="noopener">Bksp</a>
-        <div class="key key--dim" style="--w:1">_</div>
-        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Start 1" data-tip="Dynamic Macro Record Start 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRec1</a>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Play 1" data-tip="Dynamic Macro Play 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroPlay1</a>
         <a class="key key--active" style="--w:1" title="Mouse wheel up" data-tip="Mouse wheel up" href="https://docs.qmk.fm/features/mouse_keys" target="_blank" rel="noopener">Whl+</a>
       </div>
       <div class="row">
@@ -253,16 +253,16 @@
         <a class="key key--active" style="--w:1" title="RGB Matrix Hue Up" data-tip="RGB Matrix Hue Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBHue+</a>
         <a class="key key--active" style="--w:1" title="RGB Matrix Saturation Up" data-tip="RGB Matrix Saturation Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBSat+</a>
         <a class="key key--active" style="--w:1" title="RGB Matrix Speed Up" data-tip="RGB Matrix Speed Up" href="https://docs.qmk.fm/features/rgb_matrix" target="_blank" rel="noopener">RGBSpd+</a>
-        <div class="key key--dim" style="--w:1">_</div>
-        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Start 1" data-tip="Dynamic Macro Record Start 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRec1</a>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Play 1" data-tip="Dynamic Macro Play 1" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroPlay1</a>
         <div class="key key--dim" style="--w:1">_</div>
         <div class="key key--dim" style="--w:1">_</div>
         <div class="key key--dim" style="--w:1">_</div>
         <div class="key key--dim" style="--w:1">_</div>
         <div class="key key--dim" style="--w:1">_</div>
         <div class="key key--dim" style="--w:1.5">_</div>
-        <div class="key key--dim" style="--w:1">_</div>
-        <div class="key key--dim" style="--w:1">_</div>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Record Start 2" data-tip="Dynamic Macro Record Start 2" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroRec2</a>
+        <a class="key key--active" style="--w:1" title="Dynamic Macro Play 2" data-tip="Dynamic Macro Play 2" href="https://docs.qmk.fm/features/dynamic_macros" target="_blank" rel="noopener">MacroPlay2</a>
         <a class="key key--active" style="--w:1" title="Mouse wheel down" data-tip="Mouse wheel down" href="https://docs.qmk.fm/features/mouse_keys" target="_blank" rel="noopener">Whl-</a>
       </div>
       <div class="row">

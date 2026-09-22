@@ -117,8 +117,7 @@ def doc_url_for(token):
         if token.startswith(prefix):
             return DOCS_BASE + page
 
-    m = re.fullmatch(r"MO\(\w+\)", token)
-    if m:
+    if re.fullmatch(r"MO\(\w+\)", token) or re.fullmatch(r"LT\(\w+,\s*\w+\)", token):
         return DOCS_BASE + "feature_layers"
 
     # modifier-wrapped combos: link to whatever key they're wrapping.
@@ -152,6 +151,12 @@ def label_for(token):
     m = re.fullmatch(r"MO\((\w+)\)", token)
     if m:
         return ("Fn", f"Momentary layer switch to {m.group(1)}")
+
+    m = re.fullmatch(r"LT\((\w+),\s*(\w+)\)", token)
+    if m:
+        layer, tap_kc = m.groups()
+        tap_short, tap_long = label_for(tap_kc)
+        return (f"{tap_short}/Fn", f"Tap: {tap_long or tap_kc}. Hold: momentary layer switch to {layer}")
 
     # modifier-wrapped combos, e.g. LCTL(LALT(KC_M)) or LCTL(KC_F9)
     mods = []
