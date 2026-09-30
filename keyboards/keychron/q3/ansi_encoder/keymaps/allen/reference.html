@@ -46,6 +46,8 @@
   .activation td{padding:0.6rem 0.8rem 0.6rem 0; border-bottom:1px solid var(--rule); vertical-align:top;}
   .activation td:first-child{width:9rem;}
   .activation code{font-family:var(--mono); font-weight:600; color:var(--accent);}
+  .effects td:first-child{width:2rem; color:var(--ink-soft); font-family:var(--mono); font-size:0.8rem;}
+  .effects td:nth-child(2){width:13rem;}
   .board{background:var(--key-face-dim); border:1px solid var(--rule); border-radius:10px; padding:1rem;}
   .row{display:flex; gap:0.28rem; margin-bottom:0.28rem;}
   .row:last-child{margin-bottom:0;}
@@ -315,6 +317,30 @@
     </div>
     <p class="encoder-note">Rotary encoder (Fn held): keyboard <strong>RGB brightness down</strong> / <strong>up</strong></p>
     <p class="encoder-note">Hover a key for what it does &middot; click a key to open its QMK docs page</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>RGB Matrix effects</h2>
+      <span class="section-note">RM_NEXT / RM_PREV cycle order</span>
+    </div>
+    <table class="activation effects">
+      <tr><th>#</th><th>Effect</th><th>Description</th></tr>
+      <tr><td>1</td><td><code>SOLID_COLOR</code></td><td>Static single hue, no speed support</td></tr>
+      <tr><td>2</td><td><code>ALPHAS_MODS</code></td><td>Static dual hue, speed is hue for secondary hue</td></tr>
+      <tr><td>3</td><td><code>GRADIENT_UP_DOWN</code></td><td>Static gradient top to bottom, speed controls how much gradient changes</td></tr>
+      <tr><td>4</td><td><code>GRADIENT_LEFT_RIGHT</code></td><td>Static gradient left to right, speed controls how much gradient changes</td></tr>
+      <tr><td>5</td><td><code>CYCLE_ALL</code></td><td>Full keyboard solid hue cycling through full gradient</td></tr>
+      <tr><td>6</td><td><code>CYCLE_LEFT_RIGHT</code></td><td>Full gradient scrolling left to right</td></tr>
+      <tr><td>7</td><td><code>CYCLE_UP_DOWN</code></td><td>Full gradient scrolling top to bottom</td></tr>
+      <tr><td>8</td><td><code>RAINBOW_MOVING_CHEVRON</code></td><td>Full gradient Chevron shaped scrolling left to right</td></tr>
+      <tr><td>9</td><td><code>CYCLE_OUT_IN</code></td><td>Full gradient scrolling out to in</td></tr>
+      <tr><td>10</td><td><code>RAINBOW_BEACON</code></td><td>Full tighter gradient spinning around center of keyboard</td></tr>
+      <tr><td>11</td><td><code>HUE_BREATHING</code></td><td>Hue shifts up a slight amount at the same time, then shifts back</td></tr>
+      <tr><td>12</td><td><code>HUE_PENDULUM</code></td><td>Hue shifts up a slight amount in a wave to the right, then back to the left</td></tr>
+      <tr><td>13</td><td><code>HUE_WAVE</code></td><td>Hue shifts up a slight amount and then back down in a wave to the right</td></tr>
+      <tr><td>14</td><td><code>SOLID_REACTIVE</code></td><td>Static single hue, pulses keys hit to shifted hue then fades to current hue</td></tr>
+    </table>
   </section>
 
   <footer>

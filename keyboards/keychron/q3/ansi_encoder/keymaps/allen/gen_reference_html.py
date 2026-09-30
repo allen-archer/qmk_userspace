@@ -10,7 +10,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
-from gen_readme import KEYMAP, ROWS, label_for, extract_layer  # noqa: E402
+from gen_readme import KEYMAP, ROWS, label_for, extract_layer, extract_rgb_effects  # noqa: E402
 from keycode_labels import doc_url_for  # noqa: E402
 
 OUT = HERE / "reference.html"
@@ -79,6 +79,8 @@ CSS = """
   .activation td{padding:0.6rem 0.8rem 0.6rem 0; border-bottom:1px solid var(--rule); vertical-align:top;}
   .activation td:first-child{width:9rem;}
   .activation code{font-family:var(--mono); font-weight:600; color:var(--accent);}
+  .effects td:first-child{width:2rem; color:var(--ink-soft); font-family:var(--mono); font-size:0.8rem;}
+  .effects td:nth-child(2){width:13rem;}
   .board{background:var(--key-face-dim); border:1px solid var(--rule); border-radius:10px; padding:1rem;}
   .row{display:flex; gap:0.28rem; margin-bottom:0.28rem;}
   .row:last-child{margin-bottom:0;}
@@ -111,6 +113,13 @@ CSS = """
   }
   @media (max-width:560px){ .key{font-size:0.56rem;} h1{font-size:1.6rem;} }
 """
+
+
+def render_rgb_effects():
+    rows = []
+    for i, (name, desc) in enumerate(extract_rgb_effects(), start=1):
+        rows.append(f'      <tr><td>{i}</td><td><code>{html.escape(name)}</code></td><td>{html.escape(desc)}</td></tr>')
+    return "\n".join(rows)
 
 
 def render_board(tokens, fn_layer):
@@ -181,6 +190,17 @@ def main():
     </div>
     <p class="encoder-note">Rotary encoder (Fn held): keyboard <strong>RGB brightness down</strong> / <strong>up</strong></p>
     <p class="encoder-note">Hover a key for what it does &middot; click a key to open its QMK docs page</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>RGB Matrix effects</h2>
+      <span class="section-note">RM_NEXT / RM_PREV cycle order</span>
+    </div>
+    <table class="activation effects">
+      <tr><th>#</th><th>Effect</th><th>Description</th></tr>
+{render_rgb_effects()}
+    </table>
   </section>
 
   <footer>

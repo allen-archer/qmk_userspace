@@ -77,3 +77,22 @@ Everything not listed below is transparent (`_______`) — it falls through and 
 | Fn+C | `CW_TOGG` | Caps Word Toggle |
 
 **Rotary encoder (while Fn held):** keyboard RGB brightness down / up.
+
+## RGB Matrix effects (RM_NEXT / RM_PREV cycle order)
+
+Cycle through with **Fn+T** (next) / **Fn+E** (previous). Enabled/disabled per effect in `config.h`.
+
+1. **SOLID_COLOR** — Static single hue, no speed support
+2. **ALPHAS_MODS** — Static dual hue, speed is hue for secondary hue
+3. **GRADIENT_UP_DOWN** — Static gradient top to bottom, speed controls how much gradient changes
+4. **GRADIENT_LEFT_RIGHT** — Static gradient left to right, speed controls how much gradient changes
+5. **CYCLE_ALL** — Full keyboard solid hue cycling through full gradient
+6. **CYCLE_LEFT_RIGHT** — Full gradient scrolling left to right
+7. **CYCLE_UP_DOWN** — Full gradient scrolling top to bottom
+8. **RAINBOW_MOVING_CHEVRON** — Full gradient Chevron shaped scrolling left to right
+9. **CYCLE_OUT_IN** — Full gradient scrolling out to in
+10. **RAINBOW_BEACON** — Full tighter gradient spinning around center of keyboard
+11. **HUE_BREATHING** — Hue shifts up a slight amount at the same time, then shifts back
+12. **HUE_PENDULUM** — Hue shifts up a slight amount in a wave to the right, then back to the left
+13. **HUE_WAVE** — Hue shifts up a slight amount and then back down in a wave to the right
+14. **SOLID_REACTIVE** — Static single hue, pulses keys hit to shifted hue then fades to current hue

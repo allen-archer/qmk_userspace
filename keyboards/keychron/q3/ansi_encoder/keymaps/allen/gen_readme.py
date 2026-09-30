@@ -12,7 +12,29 @@ sys.path.insert(0, str(HERE))
 from keycode_labels import label_for  # noqa: E402
 
 KEYMAP = HERE / "keymap.c"
+CONFIG_H = HERE / "config.h"
 README = HERE / "README.md"
+
+RGB_EFFECT_RE = re.compile(
+    r"#undef ENABLE_RGB_MATRIX_(\w+)\n"
+    r"(//)?#define ENABLE_RGB_MATRIX_\1\n"
+    r"// (.+)"
+)
+
+
+def extract_rgb_effects():
+    """Enabled RGB Matrix effects from config.h, in cycle (RM_NEXT) order.
+
+    Cycle order matches declaration order in QMK's `enum rgb_matrix_effects`,
+    which config.h mirrors block-for-block. SOLID_COLOR has no ENABLE_* define
+    (always compiled in) so it's prepended by hand.
+    """
+    src = CONFIG_H.read_text()
+    effects = [("SOLID_COLOR", "Static single hue, no speed support")]
+    for name, commented, desc in RGB_EFFECT_RE.findall(src):
+        if not commented:
+            effects.append((name, desc))
+    return effects
 
 # Physical key order for LAYOUT_tkl_f13_ansi, row by row. Fixed by hardware.
 ROWS = [
@@ -87,6 +109,13 @@ def render_table(base_tokens, fn_tokens):
     return "\n".join(lines)
 
 
+def render_rgb_effects():
+    lines = []
+    for i, (name, desc) in enumerate(extract_rgb_effects(), start=1):
+        lines.append(f"{i}. **{name}** — {desc}")
+    return "\n".join(lines)
+
+
 def main():
     src = KEYMAP.read_text()
     base_tokens = extract_layer(src, "WIN_BASE")
@@ -128,6 +157,12 @@ Everything not listed below is transparent (`_______`) — it falls through and 
 {render_table(base_tokens, fn_tokens)}
 
 **Rotary encoder (while Fn held):** keyboard RGB brightness down / up.
+
+## RGB Matrix effects (RM_NEXT / RM_PREV cycle order)
+
+Cycle through with **Fn+T** (next) / **Fn+E** (previous). Enabled/disabled per effect in `config.h`.
+
+{render_rgb_effects()}
 """
     README.write_text(doc)
     print(f"wrote {README}")
