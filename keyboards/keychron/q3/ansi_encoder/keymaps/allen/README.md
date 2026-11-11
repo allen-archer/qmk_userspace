@@ -30,11 +30,11 @@ Standard QWERTY layout. The only non-obvious key is **Fn** (bottom row) — a mo
 
 ```
 QK_BOOT           KC_BRID           KC_BRIU           LCTL(LALT(KC_M))  LCTL(KC_F9)       RM_VALD           RM_VALU           KC_MPRV           KC_MPLY           KC_MNXT           KC_MUTE           KC_VOLD           KC_VOLU           RM_TOGG           _______           _______           RM_TOGG
-_______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           KC_BSPC           DM_REC1           DM_PLY1           MS_WHLU
-_______           RM_NEXT           RM_VALU           RM_HUEU           RM_SATU           RM_SPDU           _______           _______           _______           _______           _______           _______           _______           _______           DM_REC2           DM_PLY2           MS_WHLD
-_______           RM_PREV           RM_VALD           RM_HUED           RM_SATD           RM_SPDD           _______           _______           _______           _______           _______           _______           KC_ENT
-_______           _______           _______           CW_TOGG           _______           _______           _______           _______           _______           _______           _______           _______           _______
-_______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______
+_______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           KC_BSPC           _______           RM_SATU           RM_SPDU
+_______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           RM_SATD           RM_SPDD
+_______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           _______           KC_ENT
+_______           _______           _______           CW_TOGG           _______           _______           _______           _______           _______           _______           _______           _______           RM_HUEU
+_______           _______           _______           _______           _______           _______           _______           _______           RM_PREV           RM_HUED           RM_NEXT
 ```
 
 Everything not listed below is transparent (`_______`) — it falls through and behaves exactly like `WIN_BASE`.
@@ -57,24 +57,16 @@ Everything not listed below is transparent (`_______`) — it falls through and 
 | Fn+Mute (2) | `RM_TOGG` | RGB Matrix Toggle |
 | Fn+Knob Press | `RM_TOGG` | RGB Matrix Toggle |
 | Fn+Backspace | `KC_BSPC` | Backspace |
-| Fn+Insert | `DM_REC1` | Dynamic Macro Record Start 1 |
-| Fn+Home | `DM_PLY1` | Dynamic Macro Play 1 |
-| Fn+PgUp | `MS_WHLU` | Mouse wheel up |
-| Fn+Q | `RM_NEXT` | RGB Matrix Mode Next |
-| Fn+W | `RM_VALU` | RGB Matrix Value Up |
-| Fn+E | `RM_HUEU` | RGB Matrix Hue Up |
-| Fn+R | `RM_SATU` | RGB Matrix Saturation Up |
-| Fn+T | `RM_SPDU` | RGB Matrix Speed Up |
-| Fn+Delete | `DM_REC2` | Dynamic Macro Record Start 2 |
-| Fn+End | `DM_PLY2` | Dynamic Macro Play 2 |
-| Fn+PgDn | `MS_WHLD` | Mouse wheel down |
-| Fn+A | `RM_PREV` | RGB Matrix Mode Previous |
-| Fn+S | `RM_VALD` | RGB Matrix Value Down |
-| Fn+D | `RM_HUED` | RGB Matrix Hue Down |
-| Fn+F | `RM_SATD` | RGB Matrix Saturation Down |
-| Fn+G | `RM_SPDD` | RGB Matrix Speed Down |
+| Fn+Home | `RM_SATU` | RGB Matrix Saturation Up |
+| Fn+PgUp | `RM_SPDU` | RGB Matrix Speed Up |
+| Fn+End | `RM_SATD` | RGB Matrix Saturation Down |
+| Fn+PgDn | `RM_SPDD` | RGB Matrix Speed Down |
 | Fn+Enter | `KC_ENT` | Enter |
 | Fn+C | `CW_TOGG` | Caps Word Toggle |
+| Fn+Up | `RM_HUEU` | RGB Matrix Hue Up |
+| Fn+Left | `RM_PREV` | RGB Matrix Mode Previous |
+| Fn+Down | `RM_HUED` | RGB Matrix Hue Down |
+| Fn+Right | `RM_NEXT` | RGB Matrix Mode Next |
 
 **Rotary encoder (while Fn held):** keyboard RGB brightness down / up.
 
